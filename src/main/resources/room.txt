@@ -1,0 +1,5 @@
+{"id":1, "name": "tech-room}
+{"id":2, "name": "silence-room}
+{"id":3, "name": "2-people-room}
+{"id":4, "name": "main-room}
+{"id":5, "name": "small-room}
