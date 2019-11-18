@@ -1,17 +1,17 @@
 package services
 
 import scala.io.Source
-import io.circe._
-import io.circe.parser._
 
 object DataBaseService {
-  def getAllFromTable(tableName: String): Seq[Any] = {
 
+  def getTableFileContent(tableName: String): String = {
+    Source.fromResource(tableName + ".txt").getLines().mkString
   }
-  def getFileInfo(tableName: String): Iterator[String] = {
-    Source.fromResource(tableName + ".txt").getLines()
-  }
-  def JsonToSeq(json: String): Seq[Any] = {
-    val parseResult = parse(json)
+
+  def JsonToMap(json: String): Map[String, String] = {
+    io.circe.parser.decode[Map[String, String]](json) match {
+      case Right(v) => v
+      case Left(_) => Map()
+    }
   }
 }

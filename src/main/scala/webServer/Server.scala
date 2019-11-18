@@ -7,9 +7,10 @@ import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 
 import scala.io.StdIn
+import controller.RoomController
 
 object WebServer {
-  def main(args: Array[String]) {
+  def launchWebServer() {
 
     implicit val system = ActorSystem("my-system")
     implicit val materializer = ActorMaterializer()
@@ -31,7 +32,7 @@ object WebServer {
         }
       } ~ path("getAll") {
         get {
-          complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h3>GET ALL</h3>"))
+          complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, RoomController.showAll()))
         }
       }
 
